@@ -30,7 +30,6 @@ section {
   margin-top: -100px;
   width: 200px;
   height: 200px;
-  background-color: blue;
   /* 开启3D呈现 */
   transform-style: preserve-3d;
   /* 调用旋转动画 */
