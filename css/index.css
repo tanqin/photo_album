@@ -1,16 +1,32 @@
+/*🧨🧨🧨 为了适应不同的屏幕大小，改用流式布局 🧨🧨🧨 */
+
 /* 清除所有元素内外边距 */
 * {
   margin: 0;
   padding: 0;
 }
-/* 大盒子样式 */
-.box {
+body {
+  /* 开启弹性布局 并使 大盒子 水平+垂直居中 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* 背景占满视口总高度*/
+  height: 100vh;
+  /* 添加背景渐变色 */
+  background-image: linear-gradient(#78f, #f78);
   /* 透视 */
   /* perspective: 1000px; */
+}
+/* 大盒子样式*/
+.box {
   position: relative;
-  width: 400px;
-  height: 400px;
-  margin: 300px auto;
+  /* 鼠标快速经过出现闪屏，增大宽高以增加鼠标经过的触发范围 */
+  width: 70vh;
+  height: 70vh;
+  /* 开启弹性布局 并使 小盒子&中盒子 水平+垂直居中 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 /* 盒子旋转动画 */
 @keyframes rotated {
@@ -22,21 +38,17 @@
   }
 }
 /* 小盒子样式 */
-section {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  margin-left: -100px;
-  margin-top: -100px;
-  width: 200px;
-  height: 200px;
+.small-box {
+  position: relative;
+  width: 25%;
+  height: 25%;
   /* 开启3D呈现 */
   transform-style: preserve-3d;
   /* 调用旋转动画 */
   animation: rotated 4s linear infinite;
 }
 /* 小盒子各面公共样式 */
-section div {
+.small-box div {
   position: absolute;
   top: 0;
   left: 0;
@@ -45,44 +57,42 @@ section div {
 }
 /* 小盒子各面样式 */
 /* 前面 */
-section :nth-child(1) {
+.small-box :nth-child(1) {
   background: url(../image/01.jpg) no-repeat center/cover;
-  transform: translateZ(100px);
+  transform: translateZ(calc(70vh / 8));
 }
 /* 后面  */
-section :nth-child(2) {
+.small-box :nth-child(2) {
   background: url(../image/02.jpg) no-repeat center/cover;
-  transform: translateZ(-100px) rotateY(180deg);
+  transform: translateZ(calc(-70vh / 8)) rotateY(180deg);
 }
 
 /* 左面 */
-section :nth-child(3) {
+.small-box :nth-child(3) {
   background: url(../image/03.jpg) no-repeat center/cover;
-  transform: translateX(-100px) rotateY(90deg);
+  transform: translateX(-50%) rotateY(90deg);
 }
 /* 右面 */
-section :nth-child(4) {
+.small-box :nth-child(4) {
   background: url(../image/04.jpg) no-repeat center/cover;
-  transform: translateX(100px) rotateY(-90deg);
+  transform: translateX(50%) rotateY(-90deg);
 }
 /* 上面 */
-section :nth-child(5) {
+.small-box :nth-child(5) {
   background: url(../image/05.jpg) no-repeat center/cover;
-  transform: translateY(-100px) rotateX(90deg);
+  transform: translateY(-50%) rotateX(90deg);
 }
 /* 下面 */
-section :nth-child(6) {
+.small-box :nth-child(6) {
   background: url(../image/06.jpg) no-repeat center/cover;
-  transform: translateY(100px) rotateX(90deg);
+  transform: translateY(50%) rotateX(90deg);
 }
 
 /* 中盒子 */
-article {
+.middle-box {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 400px;
-  height: 400px;
+  width: 50%;
+  height: 50%;
   /* 开启3D呈现 */
   transform-style: preserve-3d;
   /* 中盒子初始旋转角度 */
@@ -90,7 +100,8 @@ article {
   animation: rotated 3s linear infinite;
 }
 /* 中盒子各面公共样式 */
-article div {
+.middle-box div {
+  /* 为了使中盒子不占空间的放在大盒子内，中盒子可以设置绝对定位 */
   position: absolute;
   top: 0;
   left: 0;
@@ -100,59 +111,59 @@ article div {
 }
 /* 中盒子各面的初始样式 */
 /* 前面 */
-article :nth-child(1) {
+.middle-box :nth-child(1) {
   background: url(../image/07.jpg) no-repeat center/cover;
-  transform: translateZ(200px);
+  transform: translateZ(calc(70vh / 4));
 }
 /* 后面  */
-article :nth-child(2) {
+.middle-box :nth-child(2) {
   background: url(../image/08.jpg) no-repeat center/cover;
-  transform: translateZ(-200px) rotateY(180deg);
+  transform: translateZ(calc(-70vh / 4)) rotateY(180deg);
 }
 
 /* 左面 */
-article :nth-child(3) {
+.middle-box :nth-child(3) {
   background: url(../image/09.jpg) no-repeat center/cover;
-  transform: translateX(-200px) rotateY(90deg);
+  transform: translateX(-50%) rotateY(90deg);
 }
 /* 右面 */
-article :nth-child(4) {
+.middle-box :nth-child(4) {
   background: url(../image/10.jpg) no-repeat center/cover;
-  transform: translateX(200px) rotateY(-90deg);
+  transform: translateX(50%) rotateY(-90deg);
 }
 /* 上面 */
-article :nth-child(5) {
+.middle-box :nth-child(5) {
   background: url(../image/11.jpg) no-repeat center/cover;
-  transform: translateY(-200px) rotateX(90deg);
+  transform: translateY(-50%) rotateX(90deg);
 }
 /* 下面 */
-article :nth-child(6) {
+.middle-box :nth-child(6) {
   background: url(../image/12.jpg) no-repeat center/cover;
-  transform: translateY(200px) rotateX(90deg);
+  transform: translateY(50%) rotateX(90deg);
 }
 /* 鼠标经过中盒子时 各面的样式 */
+/* 由于使用.middle-box:hover :nth-child()会出现 鼠标快速经过和离开时闪屏严重，初步判断是由于.middle-box本身在旋转造成的，而box始终不转动，所以改用box:hover .middle-box :nth-child() ，经测试有明显效果 */
 /* 前面 */
-article:hover :nth-child(1) {
-  transform: translateZ(300px);
+.box:hover .middle-box :nth-child(1) {
+  transform: translateZ(35vh);
 }
 /* 后面  */
-article:hover :nth-child(2) {
-  transform: translateZ(-300px) rotateY(180deg);
+.box:hover .middle-box :nth-child(2) {
+  transform: translateZ(-35vh) rotateY(180deg);
 }
-
 /* 左面 */
-article:hover :nth-child(3) {
-  transform: translateX(-300px) rotateY(90deg);
+.box:hover .middle-box :nth-child(3) {
+  transform: translateX(-35vh) rotateY(90deg);
 }
 /* 右面 */
-article:hover :nth-child(4) {
-  transform: translateX(300px) rotateY(-90deg);
+.box:hover .middle-box :nth-child(4) {
+  transform: translateX(35vh) rotateY(-90deg);
 }
 /* 上面 */
-article:hover :nth-child(5) {
-  transform: translateY(-300px) rotateX(90deg);
+.box:hover .middle-box :nth-child(5) {
+  transform: translateY(-35vh) rotateX(90deg);
 }
 /* 下面 */
-article:hover :nth-child(6) {
-  transform: translateY(300px) rotateX(90deg);
+.box:hover .middle-box :nth-child(6) {
+  transform: translateY(35vh) rotateX(90deg);
 }
